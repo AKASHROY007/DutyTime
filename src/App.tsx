@@ -132,7 +132,7 @@ const translations = {
     today: "আজ",
     mon: "সোম", tue: "মঙ্গল", wed: "বুধ", thu: "বৃহস্পতি", fri: "শুক্র", sat: "শনি", sun: "রবি",
     editCompany: "কোম্পানি এডিট করুন",
-    workspaceTitle: "মাই ডিউটি",
+    workspaceTitle: "duty time",
     dutyCalendar: "ডিউটি ক্যালেন্ডার",
     monthlyTotal: "মাসের মোট",
     average: "গড়",
@@ -222,7 +222,7 @@ const translations = {
     today: "Today",
     mon: "MON", tue: "TUE", wed: "WED", thu: "THU", fri: "FRI", sat: "SAT", sun: "SUN",
     editCompany: "Edit Company",
-    workspaceTitle: "My Duty",
+    workspaceTitle: "duty time",
     dutyCalendar: "Duty Calendar",
     monthlyTotal: "Monthly Total",
     average: "Average",
@@ -499,8 +499,13 @@ export default function App() {
                 <ArrowLeft className="w-5 h-5 text-emerald-400" />
               </div>
             ) : (
-              <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-                <User className="w-5 h-5 text-black" />
+              <div className="w-8 h-8 bg-[#00FF00] rounded-lg flex items-center justify-center overflow-hidden">
+                <img 
+                  src="data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100' height='100' fill='%2300FF00'/%3E%3Cpath d='M50 10 C30 10 20 30 20 50 L20 80 L80 80 L80 50 C80 30 70 10 50 10 Z' fill='black'/%3E%3Crect x='30' y='5' width='40' height='10' fill='black'/%3E%3C/svg%3E" 
+                  alt="Logo" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
               </div>
             )}
           </button>
@@ -1752,7 +1757,7 @@ function ProfileView({
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 text-center">
+    <div className="flex flex-col items-center space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 text-center">
       <div className="relative inline-block group cursor-pointer" onClick={() => fileInputRef.current?.click()}>
         <div className="w-32 h-32 rounded-full bg-emerald-900/40 border-2 border-emerald-500/20 flex items-center justify-center overflow-hidden mx-auto transition-all group-hover:border-emerald-500/50">
           {userAvatar ? (
@@ -1776,9 +1781,9 @@ function ProfileView({
         />
       </div>
 
-      <div className="space-y-2">
+      <div className="flex flex-col items-center space-y-2 w-full">
         {isEditing ? (
-          <div className="space-y-4 max-w-xs mx-auto">
+          <div className="flex flex-col items-center space-y-4 w-full max-w-xs mx-auto">
             <input
               type="text"
               value={userName}
@@ -1801,17 +1806,21 @@ function ProfileView({
             </button>
           </div>
         ) : (
-          <div className="group cursor-pointer" onClick={() => setIsEditing(true)}>
-            <div className="flex items-center justify-center gap-2">
-              <h2 className="text-3xl font-bold tracking-tight">{userName}</h2>
-              <Edit2 className="w-4 h-4 text-emerald-500/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="flex flex-col items-center group cursor-pointer w-full" onClick={() => setIsEditing(true)}>
+            <div className="flex items-center justify-center w-full">
+              <div className="relative">
+                <h2 className="text-3xl font-bold tracking-tight text-center px-8">{userName}</h2>
+                <div className="absolute top-1/2 -translate-y-1/2 right-0">
+                  <Edit2 className="w-4 h-4 text-emerald-500/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
             </div>
-            <p className="text-emerald-500/60 font-medium">{userEmail}</p>
+            <p className="text-emerald-500/60 font-medium text-center w-full">{userEmail}</p>
           </div>
         )}
       </div>
 
-      <div className="grid grid-cols-1 gap-3 text-left">
+      <div className="grid grid-cols-1 gap-3 text-left w-full">
         <div className="w-full p-4 bg-[#0D1A16] border border-emerald-900/30 rounded-[20px] flex items-center justify-between group">
           <div className="flex items-center gap-3">
             <Globe className="w-5 h-5 text-emerald-500/40 group-hover:text-emerald-400 transition-colors" />
@@ -1852,6 +1861,9 @@ function ProfileView({
           </div>
           <ChevronRight className="w-4 h-4 text-emerald-500/40" />
         </button>
+        <div className="text-center pt-4">
+          <span className="text-[10px] font-bold text-emerald-500/20 uppercase tracking-[0.2em]">Version 1.0.4</span>
+        </div>
       </div>
     </div>
   );
